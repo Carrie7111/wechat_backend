@@ -11,13 +11,12 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from app import app
 
 if __name__ == "__main__":
-    # 生产环境配置
-    # app.run(host="0.0.0.0", port=5000, debug=False, threaded=True)
-    # 开发环境配置
+    # Railway/生产环境：端口来自环境变量 PORT，本地默认 5000
+    port = int(os.environ.get("PORT", 5000))
     app.run(
         host="0.0.0.0",
-        port=5000,
-        debug=True,
+        port=port,
+        debug=False,
         use_reloader=False,  # 避免重复加载
         threaded=True  # 启用多线程
     )
